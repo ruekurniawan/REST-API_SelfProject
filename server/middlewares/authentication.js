@@ -9,7 +9,9 @@ module.exports = {
         let decode = verify(token)
         req.authenticate = decode
         let check = {
-          id: req.authenticate.id
+          where: {
+            id: req.authenticate.id
+          }
         }
         User
           .findOne(check)
@@ -29,7 +31,6 @@ module.exports = {
         })
       }
     } catch (error) {
-      console.log(error.message)
       res.status(404).json({
         message: `You Must be Login`
       })
